@@ -1,0 +1,34 @@
+package com.example.day6homework1.api.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.day6homework1.business.abstracts.UserService;
+import com.example.day6homework1.entities.concretes.BaseUser;
+
+@RestController
+@RequestMapping("/api/users")
+public class UsersController {
+
+	
+	private UserService userService;
+	
+	
+	@Autowired
+	public UsersController(UserService userService) {
+		super();
+		this.userService = userService;
+	}
+
+
+
+	@GetMapping("/getall")
+	public List<BaseUser> getAll(){
+		
+		return this.userService.getAll();
+	}
+}
