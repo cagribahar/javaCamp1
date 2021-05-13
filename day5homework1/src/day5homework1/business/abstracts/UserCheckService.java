@@ -1,6 +1,6 @@
 package day5homework1.business.abstracts;
 
-import java.util.List;
+
 
 import day5homework1.entities.concretes.User;
 
@@ -14,7 +14,7 @@ public interface UserCheckService {
 
 	boolean checkPassword(User user);
 	
-	boolean checkEmailExist(List<User>users,User user);
+	boolean checkEmailExist(User user);
 	
 	
 	

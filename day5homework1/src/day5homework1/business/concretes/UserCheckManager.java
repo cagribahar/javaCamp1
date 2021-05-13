@@ -1,6 +1,7 @@
 package day5homework1.business.concretes;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +13,8 @@ import day5homework1.entities.concretes.User;
 public class UserCheckManager implements UserCheckService{
 
 	RegisterService registerService;
+	List<String>emails= new ArrayList<String>();
+	
 	
 	public UserCheckManager(RegisterService registerService) {
 		
@@ -35,7 +38,7 @@ public class UserCheckManager implements UserCheckService{
 		Pattern pattern2 = Pattern.compile(".com");
 		Matcher matcher2 = pattern2.matcher(user.geteMail());
 
-		if (matcher.find() && matcher2.find()) {
+		if (matcher.find() && matcher2.find() && checkEmailExist(user)) {
 			return true;
 		}
 
@@ -55,16 +58,19 @@ public class UserCheckManager implements UserCheckService{
 		return false;
 	}
 	@Override
-	public boolean checkEmailExist(List<User>users,User user) {
+	public boolean checkEmailExist(User user) {
 		
-		for(User user1 : users) {
-			if(user1.geteMail().equals(user.geteMail())) {
+		for(String email : emails) {
+			if(email.equals(user.geteMail())) {
 				System.out.println("E mail alýnmýþtýr yeniden deneyin");
-				return true;
+				return false;
 			}
 		}
-		return false;
+		emails.add(user.geteMail());
+		return true;
 	}
+	
+	
 
 	
 	
